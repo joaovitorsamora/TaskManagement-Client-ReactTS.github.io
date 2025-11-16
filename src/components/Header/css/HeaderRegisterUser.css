@@ -1,0 +1,118 @@
+.botao__cadastro {
+  display: flex;
+  text-wrap-mode: nowrap;
+}
+
+.hidden-cadastro {
+  display: none;
+}
+
+.cancelbtn {
+  background-color: #e74c3c;
+  color: white;
+  margin-top: 8px;
+}
+
+.cancelbtn:hover {
+  background-color: #c0392b;
+}
+
+.label {
+  color: var(--color-surface);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background-color: var(--color-surface);
+  border-radius: 12px;
+  padding: 32px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.container-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close:hover {
+  color: #ff4b4b;
+}
+
+.modal-content input[type='text'],
+.modal-content input[type='email'],
+.modal-content input[type='password'] {
+  padding: 12px;
+  margin-bottom: 4px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.modal-content input:focus {
+  border-color: #04aa6d;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.modal-content button[type='submit'] {
+  background-color: #04aa6d;
+  color: white;
+}
+
+.modal-content button[type='submit']:hover {
+  background-color: #039e64;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

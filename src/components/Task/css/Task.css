@@ -1,0 +1,4 @@
+.tarefas{
+    color: var(--color);
+    flex-direction: column;
+}

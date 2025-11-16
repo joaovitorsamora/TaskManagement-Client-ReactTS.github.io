@@ -1,0 +1,26 @@
+.img__container {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.logout-icon {
+  cursor: pointer;
+}
+
+.cancelbtn {
+  background-color: #e74c3c;
+  color: white;
+  margin-top: 8px;
+}
+
+.cancelbtn:hover {
+  background-color: #c0392b;
+}

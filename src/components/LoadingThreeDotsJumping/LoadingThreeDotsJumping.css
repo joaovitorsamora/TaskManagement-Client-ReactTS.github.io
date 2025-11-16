@@ -1,0 +1,19 @@
+.container-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 100vh;
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  will-change: transform;
+}
+
+.dot .light-theme {
+  background-color: #171857;
+}
