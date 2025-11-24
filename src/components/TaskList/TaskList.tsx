@@ -44,7 +44,9 @@ const TaskList = () => {
     return filterStatus && filterPriority;
   });
 
-  console.log(searchItemValue);
+  if (!loggedUser) {
+    return null;
+  }
 
   const handleDeleteTask = async (id: number) => {
     if (!token) return alert('Token inválido!');

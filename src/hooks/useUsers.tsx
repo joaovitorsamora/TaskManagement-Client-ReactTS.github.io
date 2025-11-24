@@ -17,6 +17,7 @@ export const useUser = () => {
   const [loggedUser, setLoggedUser] = useState<User | null>(null);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+
   const authApiLogin = import.meta.env.VITE_API_URL_AUTH_LOGIN;
   const authApiRegister = import.meta.env.VITE_API_URL_AUTH_REGISTER;
   const userLoggedURL = import.meta.env.VITE_API_URL_AUTH_ME;
@@ -62,27 +63,42 @@ export const useUser = () => {
 
   const handleLogin = async () => {
     if (!newUser.nome || !newUser.senha) {
-      return alert('Preencha o nome e a senha!');
-    }
-    const response = await fetch(authApiLogin, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        Nome: newUser.nome,
-        Senha: newUser.senha,
-      }),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-
-      localStorage.setItem('authToken', data.token);
-
-      setLoggedUser(data.user);
-    } else {
-      Swal.fire({
-        title: 'Credenciais inválidas. Tente novamente.',
+      return Swal.fire({
+        title: 'Preencha o nome e a senha!',
         icon: 'warning',
+      });
+    }
+
+    try {
+      Swal.showLoading();
+
+      const response = await fetch(authApiLogin, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          Nome: newUser.nome,
+          Senha: newUser.senha,
+        }),
+      });
+
+      Swal.close();
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('authToken', data.token);
+        setLoggedUser(data.user);
+        setIsLoginOpen(false);
+      } else {
+        Swal.fire({
+          title: 'Credenciais inválidas. Tente novamente.',
+          icon: 'warning',
+        });
+      }
+    } catch (error) {
+      console.error('Erro ao fazer login:', error);
+      Swal.fire({
+        title: 'Erro de conexão ao tentar fazer login.',
+        icon: 'error',
       });
     }
   };

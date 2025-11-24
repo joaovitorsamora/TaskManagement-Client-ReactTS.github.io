@@ -26,8 +26,8 @@ export const Filter = () => {
           <p className="filtros__subtitulo">Refine sua lista de tarefas</p>
           <fieldset className="filtros__group">
             <legend className="filtros__legenda">Status</legend>
-            {status.map((t) => (
-              <>
+            {status.map((t, idx) => (
+              <div key={idx} className="filtro__checker">
                 <label className="filtro__opcoes">
                   <input
                     type="checkbox"
@@ -50,7 +50,7 @@ export const Filter = () => {
                   />
                   {t.Concluida}
                 </label>
-              </>
+              </div>
             ))}
           </fieldset>
           <fieldset className="filtros__group">

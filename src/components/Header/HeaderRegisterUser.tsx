@@ -29,16 +29,12 @@ export const HeaderRegisterUser = ({
       {
         <button
           onClick={onClickSignUp}
-          className={`botao__cadastro ${loggedUser ? 'hidden-cadastro' : ''}`}
+          className="botao__cadastro"
+          style={!loggedUser ? { display: 'block' } : { display: 'none' }}
         >
           Sign Up
         </button>
       }
-      {/* //   ) : (
-    //     <div className="imgcontainer">
-    //       <LogOut className="logout-icon" />
-    //     </div>
-    //   )} */}
 
       {isOpen && (
         <div id="id01" className="modal">

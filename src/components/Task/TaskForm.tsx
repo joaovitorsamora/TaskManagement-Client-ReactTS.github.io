@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './css/TaskForm.css';
+import { useUser } from '../../hooks/useUsers';
 
 interface TaskFormProps {
   id?: number;
@@ -31,9 +32,10 @@ export const TaskForm = () => {
     baixa: 4,
   };
 
-  if (!authToken) {
-    alert('Usuário não autenticado. Faça login novamente.');
-    return;
+  const { loggedUser } = useUser();
+
+  if (!loggedUser) {
+    return null;
   }
   const handleTarefaCreate = async () => {
     try {
@@ -53,18 +55,23 @@ export const TaskForm = () => {
           Tags: tarefa.tags,
         }),
       });
-      if (!response.ok) {
-        setTarefa({
-          titulo: '',
-          dataCriacao: '',
-          projetoNome: '',
-          prioridadeTarefa: '',
-          tags: [''],
-        });
-      } else {
-        alert('Erro ao criar tarefa');
-      }
+
       const data = await response.json();
+
+      if (!response.ok) {
+        console.error('Erro criando tarefa:', data);
+        alert(data?.message ?? 'Erro ao criar tarefa');
+        return;
+      }
+
+      setTarefa({
+        titulo: '',
+        dataCriacao: '',
+        projetoNome: '',
+        prioridadeTarefa: '',
+        tags: [''],
+      });
+
       setTarefa(data);
     } catch (err) {
       console.error(err);
